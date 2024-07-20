@@ -30,3 +30,9 @@ spring:
          wrtie-timeout: 5000
 
 
+application:
+  security:
+    jwt:
+     secret-key: 404E3A5E7A3D4F6A8C1E4A7D9F2A5D8G5
+     expiration: 86400000
+
