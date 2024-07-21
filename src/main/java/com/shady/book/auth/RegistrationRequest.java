@@ -11,10 +11,10 @@ import lombok.Setter;
 public class RegistrationRequest {
     @NotEmpty(message = "First name is required")
     @NotBlank(message = "First name cannot be blank")
-private String firstName;
+private String firstname;
     @NotEmpty(message = "lastName name is required")
     @NotBlank(message = "lastName name cannot be blank")
-private String lastName;
+private String lastname;
     @Email(message = "email should be valid")
     @NotEmpty(message = "email  is required")
     @NotBlank(message = "email cannot be blank")

@@ -5,6 +5,9 @@ import com.shady.book.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "role")
+@EntityListeners(AuditingEntityListener.class)
 public class Role {
 
     @Id
@@ -35,7 +40,7 @@ public class Role {
     @Column(nullable = false , updatable = false)
     private LocalDateTime createdDate;
 
-    @CreatedDate
+    @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 }

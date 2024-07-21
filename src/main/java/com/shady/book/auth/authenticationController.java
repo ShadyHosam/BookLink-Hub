@@ -1,6 +1,7 @@
 package com.shady.book.auth;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.Registration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class authenticationController {
     private final AuthenticationService service;
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<?> register(@RequestBody @Val id RegistrationRequest request){
+    public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequest request) throws MessagingException {
 
          service.register(request);
         return ResponseEntity.accepted().build();
