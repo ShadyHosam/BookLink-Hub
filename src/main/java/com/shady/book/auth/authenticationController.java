@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.Registration;
 import jakarta.validation.Valid;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,4 +26,16 @@ public class authenticationController {
         return ResponseEntity.accepted().build();
 
     }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse>authenticate(@RequestBody @Valid AuthenticateRequest request){
+        return ResponseEntity.ok(service.authenticate(request));
+
+    }
+
+    @GetMapping("/activate-account")
+    public void confirm(@RequestParam String token) throws MessagingException {
+        service.activateAccount(token);
+    }
 }
+
