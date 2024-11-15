@@ -1,4 +1,4 @@
-package com.shady.book.book;
+package com.shady.book.feedback;
 
 import com.shady.book.common.BaseEntity;
 import jakarta.persistence.*;
@@ -16,21 +16,16 @@ import java.time.LocalDateTime;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@SuperBuilder
 @Getter
 @Setter
-@SuperBuilder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Book extends BaseEntity {
-
-    private String title;
-    private String authorName;
-    private String isb;
-    private String synopsis;
-    private String bookCover;
-    private boolean archived;
-    private boolean shareable;
+@AllArgsConstructor
+public class Feedback extends BaseEntity {
 
 
+
+    private Double note;
+    private String comment;
 
 }
