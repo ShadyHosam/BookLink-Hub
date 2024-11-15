@@ -1,6 +1,8 @@
 package com.shady.book.user;
 
 
+import com.shady.book.book.Book;
+import com.shady.book.history.BookTransactionHistory;
 import com.shady.book.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,6 +46,13 @@ public class User implements UserDetails , Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    // every user should have a history of his transactions.
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column(nullable = false , updatable = false)

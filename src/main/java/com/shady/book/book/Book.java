@@ -1,6 +1,9 @@
 package com.shady.book.book;
 
 import com.shady.book.common.BaseEntity;
+import com.shady.book.feedback.Feedback;
+import com.shady.book.history.BookTransactionHistory;
+import com.shady.book.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +16,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -30,7 +34,16 @@ public class Book extends BaseEntity {
     private String bookCover;
     private boolean archived;
     private boolean shareable;
+    @ManyToOne
+    @JoinColumn(name="owner_id")
+    private User owner;
 
+    @OneToMany(mappedBy = "book")
+    private List<Feedback>feedbacks;
 
+    // every book should have a transaction history
+    // this means that the book has some history of returend and approved
 
+    @OneToMany(mappedBy = "book")
+    private List<BookTransactionHistory> histories;
 }
