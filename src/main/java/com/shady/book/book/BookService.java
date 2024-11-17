@@ -1,6 +1,8 @@
 package com.shady.book.book;
 
 import com.shady.book.common.PageResponse;
+import com.shady.book.history.BookTransactionHistory;
+import com.shady.book.history.BookTransactionHistoryRepository;
 import com.shady.book.user.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +26,7 @@ public class BookService {
           **/
         private final BookMapper bookMapper;
         private final BookRepository bookRepository;
-
+        private final BookTransactionHistoryRepository bookTransactionHistoryRepository;
         public Integer save(BookRequest request, Authentication connectedUser){
             // first lets extract the user.
             User user = ((User)connectedUser.getPrincipal());
@@ -90,6 +92,31 @@ public class BookService {
                 books.isFirst(),
                 books.isLast()
         );
+
+    }
+
+    public PageResponse<BorrowedBookResponse> findAllBorrowedBooks(int page, int size, Authentication connectedUser) {
+            User user = ((User)connectedUser.getPrincipal());
+            Pageable pageable = PageRequest.of(page , size , Sort.by("CreatedDate").descending());
+            // get all borrowed books
+            Page< BookTransactionHistory> allBorrowedBooks = bookTransactionHistoryRepository.findAllBorrowedBooks(
+                    pageable,user.getId()
+            );
+            // convert the response to a list of borrowed book response
+
+            List<BorrowedBookResponse> bookResponses = allBorrowedBooks.stream()
+                    .map(bookMapper::toBorrowedBookResponse)
+                    .toList();
+            return new PageResponse<>(
+                    bookResponses,
+                    allBorrowedBooks.getNumber(),
+                    allBorrowedBooks.getSize(),
+                    allBorrowedBooks.getTotalElements(),
+                    allBorrowedBooks.getTotalPages(),
+                    allBorrowedBooks.isFirst(),
+                    allBorrowedBooks.isLast()
+            );
+
 
     }
 }
