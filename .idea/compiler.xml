@@ -9,9 +9,6 @@
         <module name="book-network" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="book-network" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
