@@ -1,16 +1,14 @@
 package com.shady.book.book;
 
 import com.shady.book.common.PageResponse;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -102,5 +100,23 @@ public class BookController {
         return ResponseEntity.ok(bookService.returnBorrowedBook(bookId, connectedUser));
     }
 
+    @PatchMapping("/borrow/return/approve/{book-id}")
+    public ResponseEntity<Integer> approveReturnBorrowBook(
+            @PathVariable("book-id")Integer bookId,
+            Authentication connectedUser
+    ){
+        return ResponseEntity.ok(bookService.approveReturnBorrowedBook(bookId , connectedUser));
+    }
 
+    @PostMapping(value = "/cover/{book-id}" , consumes = "multipart/form-data")
+    public ResponseEntity<?>uploadBookCoverPicture(
+            @PathVariable("book-id") Integer bookId,
+            @Parameter(),
+            @RequestPart("file")MultipartFile file,
+            Authentication connectedUser
+
+            ){
+        bookService.uploadBookCoverPicture(file,connectedUser,bookId);
+        return ResponseEntity.accepted().build();
+        }
 }
