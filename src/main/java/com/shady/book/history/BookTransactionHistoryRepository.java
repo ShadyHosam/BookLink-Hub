@@ -49,7 +49,7 @@ where history.book.owner.id = :userId
     @Query("""
    
     from BookTransactionHistory transaction
-    where transaction.book.owner.id = :userId
+    where transaction.book.owner.id = :ownerId
     and transaction.book.id = :bookId
     and transaction.returned = true
     and transaction.returnApproved = false
