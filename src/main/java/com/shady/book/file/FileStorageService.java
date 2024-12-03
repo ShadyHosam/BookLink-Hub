@@ -52,7 +52,7 @@ public class FileStorageService {
             log.info("File saved to " + targetFilePath);
             return targetFilePath;
         } catch (Exception e) {
-            log.error("File wasn't saveed", e);
+            log.error("File wasn't saved", e);
         }
         return null;
     }
