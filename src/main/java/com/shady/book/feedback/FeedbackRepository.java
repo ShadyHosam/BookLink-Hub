@@ -7,12 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FeedbackRepository extends JpaRepository<Feedback,Integer> {
+public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
 
     @Query("""
-        select feedback from Feedback feedback
-        where feedback.book.id = :bookId
-""")
-
+                    select feedback from Feedback feedback
+                    where feedback.book.id = :bookId
+            """)
     Page<Feedback> findAllByBookId(Integer bookId, Pageable pageable);
 }

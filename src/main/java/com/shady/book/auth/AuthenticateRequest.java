@@ -21,6 +21,6 @@ public class AuthenticateRequest {
 
     @NotEmpty(message = "password  is required")
     @NotBlank(message = "password cannot be blank")
-    @Size(min = 8,message = "password should be at least 8 characters")
+    @Size(min = 8, message = "password should be at least 8 characters")
     private String password;
 }

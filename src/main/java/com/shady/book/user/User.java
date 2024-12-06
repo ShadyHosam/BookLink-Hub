@@ -26,10 +26,10 @@ import java.util.stream.Collectors;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="_user")
+@Table(name = "_user")
 @EntityListeners(AuditingEntityListener.class)
 
-public class User implements UserDetails , Principal {
+public class User implements UserDetails, Principal {
 
     @Id
     @GeneratedValue
@@ -55,14 +55,14 @@ public class User implements UserDetails , Principal {
     private List<BookTransactionHistory> histories;
 
     @CreatedDate
-    @Column(nullable = false , updatable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
     @CreatedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 
-    public String fullName(){
+    public String fullName() {
         return firstname + " " + lastname;
 
     }
@@ -76,7 +76,7 @@ public class User implements UserDetails , Principal {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles
                 .stream()
-                .map(role-> new SimpleGrantedAuthority(role.getName()))
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
 
     }

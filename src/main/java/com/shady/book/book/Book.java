@@ -36,21 +36,22 @@ public class Book extends BaseEntity {
     private boolean archived;
     private boolean shareable;
     @ManyToOne
-    @JoinColumn(name="owner_id")
+    @JoinColumn(name = "owner_id")
     private User owner;
 
     @OneToMany(mappedBy = "book")
-    private List<Feedback>feedbacks;
+    private List<Feedback> feedbacks;
 
     // every book should have a transaction history
     // this means that the book has some history of returend and approved
 
     @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> histories;
-// what does transient mean?
+
+    // what does transient mean?
     @Transient
-    public double getRate(){
-        if (feedbacks == null || feedbacks.isEmpty()){
+    public double getRate() {
+        if (feedbacks == null || feedbacks.isEmpty()) {
             return 0.0;
         }
 

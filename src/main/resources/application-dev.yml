@@ -34,8 +34,8 @@ application:
       secret-key: A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6A7B8C9D0E1F2G3H4
       expiration: 86400000
   mailing:
-      frontend:
-        activation-url: http://localhost:4200/activate-account
+    frontend:
+      activation-url: http://localhost:4200/activate-account
   file:
     upload:
       photos-output-path: ./uploads

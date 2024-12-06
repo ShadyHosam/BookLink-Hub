@@ -19,7 +19,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(LockedException.class)
-    public ResponseEntity<ExceptionResponse>handlerException(LockedException exp){
+    public ResponseEntity<ExceptionResponse> handlerException(LockedException exp) {
         return ResponseEntity
                 .status(UNAUTHORIZED)
                 .body(
@@ -30,8 +30,9 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
     @ExceptionHandler(DisabledException.class)
-    public ResponseEntity<ExceptionResponse>handlerException(DisabledException exp){
+    public ResponseEntity<ExceptionResponse> handlerException(DisabledException exp) {
         return ResponseEntity
                 .status(UNAUTHORIZED)
                 .body(
@@ -42,8 +43,9 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<ExceptionResponse>handlerException(BadCredentialsException exp){
+    public ResponseEntity<ExceptionResponse> handlerException(BadCredentialsException exp) {
         return ResponseEntity
                 .status(UNAUTHORIZED)
                 .body(
@@ -54,8 +56,9 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
     @ExceptionHandler(MessagingException.class)
-    public ResponseEntity<ExceptionResponse>handlerException(MessagingException exp){
+    public ResponseEntity<ExceptionResponse> handlerException(MessagingException exp) {
         return ResponseEntity
                 .status(INTERNAL_SERVER_ERROR)
                 .body(
@@ -64,8 +67,9 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ExceptionResponse>handlerException(MethodArgumentNotValidException exp){
+    public ResponseEntity<ExceptionResponse> handlerException(MethodArgumentNotValidException exp) {
         Set<String> errors = new HashSet<>();
         exp.getBindingResult().getAllErrors()
                 .forEach(error -> {
@@ -82,8 +86,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionResponse>handlerException(Exception exp){
-            exp.printStackTrace();
+    public ResponseEntity<ExceptionResponse> handlerException(Exception exp) {
+        exp.printStackTrace();
         return ResponseEntity
                 .status(INTERNAL_SERVER_ERROR)
                 .body(
@@ -96,13 +100,13 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(OperationNotPermittedException.class)
-    public ResponseEntity<ExceptionResponse>handlerException(OperationNotPermittedException exp){
-return ResponseEntity
-        .status(BAD_REQUEST)
-        .body(
-                ExceptionResponse.builder()
-                        .error(exp.getMessage())
-                        .build()
-        );
+    public ResponseEntity<ExceptionResponse> handlerException(OperationNotPermittedException exp) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
+                                .error(exp.getMessage())
+                                .build()
+                );
     }
 }

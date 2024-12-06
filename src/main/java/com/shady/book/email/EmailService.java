@@ -33,12 +33,12 @@ public class EmailService {
                           String activationCode,
                           String subject
     ) throws MessagingException {
-            String templateName;
-            if (emailTemplate== null){
-                templateName = "confirm-email";
-            }else {
-                templateName = emailTemplate.getName();
-            }
+        String templateName;
+        if (emailTemplate == null) {
+            templateName = "confirm-email";
+        } else {
+            templateName = emailTemplate.getName();
+        }
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(
@@ -47,10 +47,10 @@ public class EmailService {
                 UTF_8.name()
         );
 
-        Map<String , Object > properties = new HashMap<>();
-        properties.put("username",username);
-        properties.put("confirmationUrl",confirmationUrl);
-        properties.put("activation_code",activationCode);
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("username", username);
+        properties.put("confirmationUrl", confirmationUrl);
+        properties.put("activation_code", activationCode);
 
         Context context = new Context();
         context.setVariables(properties);
@@ -59,8 +59,8 @@ public class EmailService {
         helper.setTo(to);
         helper.setSubject(subject);
 
-        String template = templateEngine.process(templateName,context);
-        helper.setText(template,true);
+        String template = templateEngine.process(templateName, context);
+        helper.setText(template, true);
         mailSender.send(mimeMessage);
 
     }

@@ -13,14 +13,14 @@ public class FileUtils {
     private static final Logger log = LoggerFactory.getLogger(FileUtils.class);
 
     public static byte[] readFileFromLocation(String fileUrl) {
-        if (StringUtils.isBlank(fileUrl)){
+        if (StringUtils.isBlank(fileUrl)) {
             return null;
         }
-        try{
+        try {
             Path filePath = new File(fileUrl).toPath();
             return Files.readAllBytes(filePath);
-        }catch(IOException e){
-    log.warn("Can't find a file in this path {}" , fileUrl);
+        } catch (IOException e) {
+            log.warn("Can't find a file in this path {}", fileUrl);
         }
         return new byte[0];
     }

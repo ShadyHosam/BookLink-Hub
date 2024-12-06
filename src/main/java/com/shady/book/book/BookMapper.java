@@ -20,17 +20,17 @@ public class BookMapper {
     }
 
     public BookResponse toBookResponse(Book book) {
-            return BookResponse.builder()
-                    .id(book.getId())
-                    .title(book.getTitle())
-                    .authorName(book.getAuthorName())
-                    .isbn(book.getIsb())
-                    .synopsis(book.getSynopsis())
-                    .archived(book.isArchived())
-                    .shareable(book.isShareable())
-                    .owner(book.getOwner().fullName())
-                    .cover(FileUtils.readFileFromLocation(book.getBookCover()))
-                    .build();
+        return BookResponse.builder()
+                .id(book.getId())
+                .title(book.getTitle())
+                .authorName(book.getAuthorName())
+                .isbn(book.getIsb())
+                .synopsis(book.getSynopsis())
+                .archived(book.isArchived())
+                .shareable(book.isShareable())
+                .owner(book.getOwner().fullName())
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
+                .build();
 
     }
 
@@ -45,5 +45,5 @@ public class BookMapper {
                 .returnApproved(history.isReturnApproved())
                 .build();
 
-        }
+    }
 }

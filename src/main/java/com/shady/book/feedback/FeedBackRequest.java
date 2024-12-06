@@ -4,8 +4,8 @@ import jakarta.validation.constraints.*;
 
 public record FeedBackRequest(
         @Positive(message = "200")
-        @Min(value = 0 , message = "201")
-        @Max(value = 5 , message = "202")
+        @Min(value = 0, message = "201")
+        @Max(value = 5, message = "202")
         Double note,
 
 

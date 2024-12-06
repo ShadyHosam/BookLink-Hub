@@ -16,13 +16,14 @@ public class FeedBackController {
     private final FeedBackService feedBackService;
 
 
-    @PostMapping("/saveFeedBack")
+    @PostMapping()
     public ResponseEntity<Integer> saveFeedBack(
             @Valid @RequestBody FeedBackRequest feedBackRequest,
             Authentication connectedUser
     ) {
         return ResponseEntity.ok(feedBackService.save(feedBackRequest, connectedUser));
     }
+
     // add new endpoint to get all the feedbacks for a specific book ~~~
 
     @GetMapping("/book/{book-id}")
@@ -33,11 +34,12 @@ public class FeedBackController {
             Authentication connectedUser
     ) {
 
-            return ResponseEntity.ok(feedBackService.findAllFeedbackByBook(
-                    bookId, page, size, connectedUser
-            )
-            );
+        return ResponseEntity.ok(feedBackService.findAllFeedbackByBook(
+                        bookId, page, size, connectedUser
+                )
+        );
 
     }
+
 
 }

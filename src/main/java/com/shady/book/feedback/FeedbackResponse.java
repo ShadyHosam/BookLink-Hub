@@ -10,7 +10,7 @@ import lombok.*;
 
 
 public class FeedbackResponse {
-   private Double note;
+    private Double note;
     private String comment;
     private boolean ownFeedback;
 
