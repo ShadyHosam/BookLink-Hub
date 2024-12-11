@@ -13,14 +13,11 @@ import lombok.Setter;
 @Builder
 public class AuthenticateRequest {
 
-    @Email(message = "email should be valid")
-    @NotEmpty(message = "email  is required")
-    @NotBlank(message = "email cannot be blank")
+
+    @NotEmpty(message = "Email is required")
     private String email;
 
-
-    @NotEmpty(message = "password  is required")
-    @NotBlank(message = "password cannot be blank")
-    @Size(min = 8, message = "password should be at least 8 characters")
+    @NotEmpty(message = "Password is required")
+    @Size(min = 8, message = "Password should be at least 8 characters")
     private String password;
 }
