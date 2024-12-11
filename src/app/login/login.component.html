@@ -1,0 +1,36 @@
+<div class="container-fluid h-custom card login-container">
+  <h3 class="text-center">Login</h3>
+  <hr>
+  <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
+    <p *ngFor="let msg of errorMsg">
+      {{ msg }}
+    </p>
+  </div>
+  <!-- Email / Login input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+
+    <label for="login" class="form-label">Email Address</label>
+    <input [(ngModel)]="authRequest.email" type="email" class="form-control form-control-lg" id="login"
+           placeholder="name@Example.com">
+  </div>
+  <!-- Password  -->
+  <div class="form-outline mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input [(ngModel)]="authRequest.password" type="password" class="form-control form-control-lg" id="password"
+           placeholder="Password">
+  </div>
+  <!-- Login event -->
+  <div class="d-flex justify-content-between mb-3">
+    <button (click)="login()" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem;">Login
+    </button>
+
+    <!-- password event -->
+    <div>
+      Don't have an account? &nbsp;
+      <button (click)="register()" type="button" class="btn btn-link link-danger">
+        Register
+      </button>
+    </div>
+  </div>
+</div>
