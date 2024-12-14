@@ -1,0 +1,48 @@
+<div class="container-fluid h-custom card login-container">
+  <h3 class="text-center">Register new account</h3>
+  <hr>
+  <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
+    <p *ngFor="let msg of errorMsg">
+      {{ msg }}
+    </p>
+  </div>
+  <!-- firstname / Register input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label for="firstname" class="form-label">First Name</label>
+    <input [(ngModel)]="registerRequest.firstname" type="text" class="form-control form-control-lg" id="firstname"
+           placeholder="Shady">
+  </div>
+  <!-- lastname / Register input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label for="lastname" class="form-label">Last Name</label>
+    <input [(ngModel)]="registerRequest.lastname" type="text" class="form-control form-control-lg" id="lastname"
+           placeholder="Hossam">
+  </div>
+  <!-- Email / Register input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label for="email" class="form-label">Email</label>
+    <input [(ngModel)]="registerRequest.email" type="email" class="form-control form-control-lg" id="email"
+           placeholder="Example@Bookhub.com">
+  </div>
+
+  <!-- Password  -->
+  <div class="form-outline mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input [(ngModel)]="registerRequest.password" type="password" class="form-control form-control-lg" id="password"
+           placeholder="Password">
+  </div>
+  <!-- Register event -->
+  <div class="d-flex justify-content-between mb-auto5">
+    <button (click)="register()" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem;">Register
+    </button>
+
+    <!-- password event -->
+    <div class="m-2">
+      Do you already have an account? &nbsp;
+      <button (click)="login()" type="button" class="btn btn-link link-danger">
+        Login
+      </button>
+    </div>
+  </div>
+</div>
