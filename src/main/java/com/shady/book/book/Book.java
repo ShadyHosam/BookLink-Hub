@@ -42,17 +42,17 @@ public class Book extends BaseEntity {
     @OneToMany(mappedBy = "book")
     private List<Feedback> feedbacks;
 
-    // every book should have a transaction history
-    // this means that the book has some history of returend and approved
 
     @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> histories;
 
-    // what does transient mean?
     @Transient
     public double getRate() {
         if (feedbacks == null || feedbacks.isEmpty()) {
+            System.out.println("Book.getRate()");
+
             return 0.0;
+
         }
 
         var rate = this.feedbacks.stream()
@@ -60,6 +60,8 @@ public class Book extends BaseEntity {
                 .average()
                 .orElse(0.0);
         double roundedRate = Math.round(rate * 10.0) / 10.0;
+        System.out.println("Book.getRate()");
+
         return roundedRate;
     }
 }
