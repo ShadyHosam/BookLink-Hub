@@ -26,6 +26,7 @@ export class LoginComponent {
 
   login() {
   this.errorMsg = [];
+
   this.authService.authenticate({body:this.authRequest}).
   subscribe(
     {
@@ -33,8 +34,8 @@ export class LoginComponent {
 
         this.tokenService.token=  res.token as string;
         //redirect to the books page
-        //this.router.navigate(['books']);
-        console.log(this.tokenService.token);
+       this.router.navigate(['books']);
+
       },
      error:(err) =>{
         console.log(err);

@@ -1,0 +1,6 @@
+<h3>Books Collection..</h3>
+<hr>
+<!-- we need to fetch all the books and show them here -->
+<div class="d-flex justify-content-start gap-2 flex-wrap">
+<app-book-card [book]="book" *ngFor="let book of bookResponse.content">{{book.title}}</app-book-card>
+</div>
